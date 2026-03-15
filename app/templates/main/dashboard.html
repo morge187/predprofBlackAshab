@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard">
+    <h2>Добро пожаловать, {{ user.first_name }} {{ user.last_name }}</h2>
+    <p>Роль: {{ user.role.upper() }}</p>
+    
+    {% if user.role == 'admin' %}
+        <div>
+            <h3>Администратор</h3>
+            <a href="{{ url_for('admin.users') }}" class="btn">Управление пользователями</a>
+            <a href="{{ url_for('admin.create_user') }}" class="btn">Создать пользователя</a>
+        </div>
+    {% elif user.role == 'user' %}
+        <div>
+            <h3>Пользователь</h3>
+            <a href="{{ url_for('user.upload_test') }}" class="btn">Загрузить тестовые данные</a>
+        </div>
+    {% endif %}
+    
+    <div class="info">
+        <h3>Информация о пользователе</h3>
+        <p><strong>Логин:</strong> {{ user.username }}</p>
+        <p><strong>Имя:</strong> {{ user.first_name }}</p>
+        <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+    </div>
+</div>
+{% endblock %}
