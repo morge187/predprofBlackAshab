@@ -10,7 +10,6 @@ from routes import register_blueprints
 
 login_manager = LoginManager()
 csrf = CSRFProtect()
-migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -19,7 +18,6 @@ def create_app():
     app.config.from_object(Settings)
 
     db.init_app(app)
-    migrate.init_app(app, db)
     login_manager.init_app(app)
     csrf.init_app(app)
 
