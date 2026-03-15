@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Analytics</h2>
+<p>Overall Accuracy: {{ acc }}</p>
+<div id="graph1"></div>
+<div id="graph2"></div>
+<div id="graph3"></div>
+<div id="graph4"></div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    var graphData1 = { graphJSON1, safe };
+    Plotly.newPlot('graph1', graphData1.data, graphData1.layout);
+    
+    var graphData2 = { graphJSON2, safe };
+    Plotly.newPlot('graph2', graphData2.data, graphData2.layout);
+    
+    // Добавьте для graph3 и graph4 аналогично
+</script>
+{% endblock %}

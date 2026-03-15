@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - ./uploads:/app/uploads
+      - ./static/models:/app/static/models
+    environment:
+      - FLASK_ENV=development
+      - SECRET_KEY=your-secret-key-change-in-prod
+    depends_on:
+      - db
+    command: sh -c "python database.py && python main.py"
+
+  db:
+    image: sqlite:latest  # SQLite не требует отдельного сервиса, но для совместимости
+    # Для PostgreSQL вместо sqlite:
+    # image: postgres:15
+    # environment:
+    #   POSTGRES_DB: alien_db
+    #   POSTGRES_USER: user
+    #   POSTGRES_PASSWORD: pass
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

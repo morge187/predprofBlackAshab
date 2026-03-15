@@ -1,14 +1,8 @@
 import os
-from datetime import timedelta
 
-
-class Settings:
-    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key-change-me")
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///canteen.db")
+class Config:
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard-to-guess-string-change-it'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///database.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-    REMEMBER_COOKIE_DURATION = timedelta(days=14)
-    WTF_CSRF_TIME_LIMIT = None
-
-    # Демо-настройка: "платежи" помечаем как успешные в приложении
-    PAYMENT_DEMO_MODE = True
+    UPLOAD_FOLDER = 'uploads'
+    MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100MB
