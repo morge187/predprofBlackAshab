@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Подключение библиотеки Chart.js для графиков -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <title>Аналитика модели</title>
+    <!-- Минимальные стили для аналитики -->
+    <style>
+        /* Основной контейнер */
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 1000px; 
+            margin: 50px auto; 
+            padding: 20px; 
+        }
+        /* Зона загрузки файлов */
+        .upload-area { 
+            border: 2px dashed #007bff; /* Пунктирная синяя рамка */
+            padding: 30px; 
+            text-align: center; 
+            margin: 20px 0; 
+            cursor: pointer; /* Курсор-указатель */
+        }
+        /* Блок метрик (точность/потери) */
+        .metrics { 
+            display: flex; /* Flexbox для горизонтального расположения */
+            gap: 20px; 
+            margin: 20px 0; 
+        }
+        .metric { 
+            flex: 1; /* Равная ширина для каждой метрики */
+            background: #e9ecef; 
+            padding: 20px; 
+            text-align: center; 
+        }
+        /* Контейнер для графика */
+        .chart-container { 
+            height: 400px; /* Фиксированная высота */
+            margin: 20px 0; 
+        }
+        /* Кнопки */
+        button { 
+            padding: 10px 20px; 
+            background: #28a745; /* Зеленый */
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            margin: 10px 0; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Заголовок -->
+    <h1>Работа с нейронной сетью</h1>
+    
+    <!-- Информация о текущем пользователе -->
+    <div id="userInfo" style="margin-bottom: 20px;"></div>
+    
+    <!-- Зона загрузки CSV файлов -->
+    <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+        <p>📁 Нажмите или перетащите CSV файл для анализа</p>
+        <!-- Скрытый input для выбора файлов -->
+        <input type="file" id="fileInput" accept=".csv" style="display: none;">
+    </div>
+    
+    <!-- Кнопка анализа (показывается после выбора файла) -->
+    <button id="analyzeBtn" onclick="analyzeData()" style="display: none;">
+        🚀 Анализировать данные
+    </button>
+    
+    <!-- Блок результатов (скрыт до анализа) -->
+    <div id="results" style="display: none;">
+        <h2>Результаты анализа</h2>
+        
+        <!-- Метрики точности и потерь -->
+        <div class="metrics">
+            <div class="metric">
+                <div id="accuracy" style="font-size: 2em; font-weight: bold;">--</div>
+                <div>Точность</div>
+            </div>
+            <div class="metric">
+                <div id="loss" style="font-size: 2em; font-weight: bold;">--</div>
+                <div>Потери</div>
+            </div>
+        </div>
+        
+        <!-- Контейнер для масштабируемого графика -->
+        <div class="chart-container">
+            <canvas id="chart"></canvas> <!-- Холст для Chart.js -->
+        </div>
+    </div>
+    
+    <!-- Кнопка выхода -->
+    <button onclick="logout()">Выйти</button>
+
+</body>
+</html>

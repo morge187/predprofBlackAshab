@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        /* Стиль карточки с информацией */
+        .user-info { 
+            background: #f8f9fa;
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 20px 0; 
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #dc3545;
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        }
+        .s { color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Информация о пользователе</h1>   
+    <!-- Контейнер для информации о пользователе -->
+    <div id="userInfo" class="user-info">
+        <p><strong>Пользователь</strong></p>
+    </div>
+    
+    <button onclick="logout()"><a href="login.html">Выйти</a></button>
+    
+    <p><a class="s" href="analytics.html">Перейти к аналитике</a></p>
+
+</body>
+</html>
