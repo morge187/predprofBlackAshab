@@ -20,6 +20,27 @@ def login():
         flash('Invalid username or password')
     return render_template('auth/login.html', form=form)
 
+@auth_bp.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.dashboard'))
+    form = RegisterForm()
+    if form.validate_on_submit():
+        if User.query.filter_by(username=form.username.data).first():
+            flash('Username already exists')
+            return render_template('auth/register.html', form=form)
+        user = User(
+            username=form.username.data,
+            first_name=form.first_name.data,
+            last_name=form.last_name.data
+        )
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Registration successful! Please login.')
+        return redirect(url_for('auth.login'))
+    return render_template('auth/register.html', form=form)
+
 @auth_bp.route('/logout')
 @login_required
 def logout():
