@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; }
+        button { background: #0a7900; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Регистрация</h1>
+    <form id="registerForm">
+        <input type="text" id="login" placeholder="Логин" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <input type="text" id="firstName" placeholder="Имя" required>
+        <input type="text" id="lastName" placeholder="Фамилия" required>
+        <input type="hidden" id="role" value="user">
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <p><a href="login.html">Войти в систему</a></p>
+</body>
+</html>
